@@ -41,10 +41,7 @@ class SmartLamp:
         handler(msg.payload.decode())
 
     def _get_state(self, payload):
-        self.mqtt_client.publish(
-            self.topic_base + '/state',
-            payload=self.lamp_state
-        )
+        self._publish_state()
 
     def _set_state(self, payload):
         if payload == 'on':
@@ -60,6 +57,12 @@ class SmartLamp:
             self.lamp_state = 'on'
         elif self.lamp_state == 'on':
             self.lamp_state = 'off'
+
+    def _publish_state(self):
+        self.mqtt_client.publish(
+            self.topic_base + '/state',
+            payload=self.lamp_state
+        )
 
     def start(self):
         self.mqtt_client.connect(self.broker_host)
