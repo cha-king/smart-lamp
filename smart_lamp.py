@@ -26,12 +26,11 @@ class SmartLamp:
         self.mqtt_client.on_connect = self._mqtt_on_connect
         self.mqtt_client.on_message = self._mqtt_on_message
 
-
     def _mqtt_on_connect(self, client, userdata, flags, rc):
         self.mqtt_client.subscribe(
             [(self.topic_base + '/getState', 0),
-            (self.topic_base + '/setState', 0),
-            (self.topic_base + '/toggleState', 0)]
+             (self.topic_base + '/setState', 0),
+             (self.topic_base + '/toggleState', 0)]
         )
 
     def _mqtt_on_message(self, client, userdata, msg):
