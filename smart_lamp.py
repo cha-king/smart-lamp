@@ -42,10 +42,10 @@ class SmartLamp:
 
     def _set_state(self, payload):
         if payload == 'on':
-            self.output.off()
+            self.output.on()
             self.lamp_state = 'on'
         elif payload == 'off':
-            self.output.on()
+            self.output.off()
             self.lamp_state = 'off'
 
         self._publish_state()
