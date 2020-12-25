@@ -1,5 +1,3 @@
-import os
-
 from gpiozero import LED
 import paho.mqtt.client as paho
 
