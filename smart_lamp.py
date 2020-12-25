@@ -51,12 +51,16 @@ class SmartLamp:
             self.lamp.on()
             self.lamp_state = 'off'
 
+        self._publish_state()
+
     def _toggle_state(self, payload):
         self.lamp.toggle()
         if self.lamp_state == 'off':
             self.lamp_state = 'on'
         elif self.lamp_state == 'on':
             self.lamp_state = 'off'
+
+        self._publish_state()
 
     def _publish_state(self):
         self.mqtt_client.publish(
