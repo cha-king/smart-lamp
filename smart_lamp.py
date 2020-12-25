@@ -13,7 +13,7 @@ class SmartLamp:
         self.broker_host = broker_host
         self.topic_base = topic_base
 
-        self.lamp = LED(lamp_pin)
+        self.output = LED(lamp_pin)
         self.lamp_state = 'off'
 
         self.topic_handlers = {
@@ -42,10 +42,10 @@ class SmartLamp:
 
     def _set_state(self, payload):
         if payload == 'on':
-            self.lamp.off()
+            self.output.off()
             self.lamp_state = 'on'
         elif payload == 'off':
-            self.lamp.on()
+            self.output.on()
             self.lamp_state = 'off'
 
         self._publish_state()
